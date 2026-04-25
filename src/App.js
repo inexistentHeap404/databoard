@@ -1,25 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
-
-function App() {
+import Table from './Table';
+import Upload from './Upload';
+import { useState } from 'react';
+export default function App() {
+  const [showUpload, setShowUpload] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* databoard */}
+      <div className="nav">
+        DATABOARD
+      </div>
+      <div className="bigcardholder">
+        <div onClick={()=>{setShowUpload(true)}} className="bigcard uploadcard">Upload New Dataset Link</div>
+      </div>
+      {showUpload && <Upload onClose={()=>{setShowUpload(false)}} />}
+      <Table />
     </div>
   );
 }
-
-export default App;

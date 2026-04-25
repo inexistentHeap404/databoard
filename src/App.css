@@ -1,38 +1,41 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  font-weight: bolder;
+  font-size: xx-large;
+  border-bottom: 1px solid black;
 }
 
-.App-link {
-  color: #61dafb;
+.bigcardholder{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 0px 20px 0px 20px;
+  margin-top: 5vh;
+  height: 20vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.bigcard{
+  color: black;
+  border: 1px solid black;
+  padding: 20px;
+  width: 33.33%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+}
+
+.bigcard:hover{
+  box-shadow: 10px 10px 0px black;
+}
+
+
+.uploadcard{
+  background-color: #d1e7dd;
+  border-color: #0f5132;
+  color: #0f5132;
 }

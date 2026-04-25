@@ -1,0 +1,40 @@
+.uploadform{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    padding: 20px;
+    border: 1px solid black;
+    backdrop-filter: blur(10px);
+    height: 100%;
+    width: 100%;
+    top: 0;
+}
+
+
+.uploadformBody{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
+.radioGroup{
+    display: flex;
+    gap: 10px;
+}
+
+.submitButton{
+    padding: 10px 20px 10px 20px;
+    border: none;
+    background-color: black;
+    color: white;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.submitButton:hover{
+    background-color: #333;
+}
