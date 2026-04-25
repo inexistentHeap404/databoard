@@ -151,6 +151,7 @@ export default function Upload({onClose}) {
                     <input type="text" placeholder="notes" value={notes} onChange={(e)=>{setNotes(e.target.value)}} />
                 </div>
                 <button type="button" onClick={()=>{handleSubmit()}} className="submitButton">Submit</button>
+                <button type="button" onClick={()=>{onClose()}} className="closeButton">Close</button>
             </div>
         </div>
     )
