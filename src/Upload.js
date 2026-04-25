@@ -68,8 +68,9 @@ export default function Upload({onClose}) {
                 alert("Data inserted successfully");
             }
         }
-        insertData();
-        onClose();
+        await insertData();
+        window.location.reload();
+
     }
     return (
         <div className="uploadform">
