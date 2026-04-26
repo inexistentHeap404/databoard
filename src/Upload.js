@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Upload.css";
 import { supabase } from './utils/supabase.js'
 
@@ -12,11 +12,15 @@ export default function Upload({onClose}) {
     const [au, setAu] = useState("");
     const [uploadedBy, setUploadedBy] = useState("");
     const [notes, setNotes] = useState("");
+    const [dropdown, setDropdown] = useState(false);
+    const dropdownRef = useRef(null);
+    const uploadRef = useRef(null);
     const handleRadioChange = (value) => {
         setPaid(value);
     }
     const handleCategoryChange = (value) => {
         setCategory(value);
+        setDropdown(false);
     }
     const handleSubmit = async () => {
         if (!category || !link || !paid || !numImages || !au || !uploadedBy) {
@@ -72,52 +76,45 @@ export default function Upload({onClose}) {
         window.location.reload();
 
     }
+    useEffect(()=>{
+        function clickoutsidedropdown(e){
+            if(dropdownRef.current && !dropdownRef.current.contains(e.target)){
+                setDropdown(false);
+            }
+        }
+        function clickoutsideupload(e){
+            if(uploadRef.current && !uploadRef.current.contains(e.target)){
+                onClose();
+            }
+        }
+        document.addEventListener("mousedown", clickoutsidedropdown);
+        document.addEventListener("mousedown", clickoutsideupload);
+        return () => {
+        document.removeEventListener("mousedown", clickoutsidedropdown);
+        document.removeEventListener("mousedown", clickoutsideupload);
+        };
+    }, [onClose])
     return (
-        <div className="uploadform">
+        <div className="uploadform" ref={uploadRef}>
             <div className="uploadformHeader">Enter the details of the dataset</div>
             <div className="uploadformBody">
-                <label>Category: </label>
-                <div className="radioGroup">
-                    <div>
-                        <input name="category" checked={category==="Acne"} type="radio" onChange={()=>{handleCategoryChange("Acne")}} />
-                        <label>Acne</label>
-                    </div>
-                    <div>
-                        <input name="category" checked={category==="Pigmentation"} type="radio" onChange={()=>{handleCategoryChange("Pigmentation")}} />
-                        <label>Pigmentation</label>
-                    </div>
-                    <div>
-                        <input name="category" checked={category==="Redness"} type="radio" onChange={()=>{handleCategoryChange("Redness")}} />
-                        <label>Redness</label>
-                    </div>
-                    <div>
-                        <input name="category" checked={category==="Eyebag"} type="radio" onChange={()=>{handleCategoryChange("Eyebag")}} />
-                        <label>Eyebag</label>
-                    </div>
-                    <div>
-                        <input name="category" checked={category==="Darkcircle"} type="radio" onChange={()=>{handleCategoryChange("Darkcircle")}} />
-                        <label>Darkcircle</label>
-                    </div>
-                    <div>
-                        <input name="category" checked={category==="Finelines"} type="radio" onChange={()=>{handleCategoryChange("Finelines")}} />
-                        <label>Finelines</label>    
-                    </div>
-                    <div>
-                        <input name="category" checked={category==="Wrinkles"} type="radio" onChange={()=>{handleCategoryChange("Wrinkles")}} />
-                        <label>Wrinkles</label>
-                    </div>
-                    <div>
-                        <input name="category" checked={category==="Whiteheads"} type="radio" onChange={()=>{handleCategoryChange("Whiteheads")}} />
-                        <label>Whiteheads</label>
-                    </div>
-                    <div>
-                        <input name="category" checked={category==="Blackheads"} type="radio" onChange={()=>{handleCategoryChange("Blackheads")}} />
-                        <label>Blackheads</label>
-                    </div>
-                    <div>
-                        <input name="category" checked={category==="Mixed"} type="radio" onChange={()=>{handleCategoryChange("Mixed")}} />
-                        <label>Mixed</label>
-                    </div>
+                <div className="dropdownContainer">
+                    <label className="dropdownLabel" onClick={()=>{setDropdown(!dropdown)}}>Category ⏷ <span className="dropdownSelected">{category}</span></label>
+                    {
+                        dropdown && 
+                        <div ref={dropdownRef} className="dropdown" >
+                            <div className="dropdownItems" onClick={()=>{handleCategoryChange("Acne")}}>Acne</div>
+                            <div className="dropdownItems" onClick={()=>{handleCategoryChange("Pigmentation")}}>Pigmentation</div>
+                            <div className="dropdownItems" onClick={()=>{handleCategoryChange("Redness")}}>Redness</div>
+                            <div className="dropdownItems" onClick={()=>{handleCategoryChange("Eyebag")}}>Eyebag</div>
+                            <div className="dropdownItems" onClick={()=>{handleCategoryChange("Darkcircle")}}>Darkcircle</div>
+                            <div className="dropdownItems" onClick={()=>{handleCategoryChange("Finelines")}}>Finelines</div>
+                            <div className="dropdownItems" onClick={()=>{handleCategoryChange("Wrinkles")}}>Wrinkles</div>
+                            <div className="dropdownItems" onClick={()=>{handleCategoryChange("Whiteheads")}}>Whiteheads</div>
+                            <div className="dropdownItems" onClick={()=>{handleCategoryChange("Blackheads")}}>Blackheads</div>
+                            <div className="dropdownItems" onClick={()=>{handleCategoryChange("Mixed")}}>Mixed</div>
+                        </div>
+                    }
                 </div>
                 <div>
                     <div>

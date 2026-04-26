@@ -8,8 +8,10 @@ import { supabase } from './utils/supabase.js'
 import { useState, useEffect } from "react";
 export default function SimpleTable() {
     const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true);
             const { data, error } = await supabase
                 .from('databoard')
                 .select('*');
@@ -114,7 +116,8 @@ export default function SimpleTable() {
             </tr>
           ))
           : 
-          <div>No Links are saved so far...</div>
+          loading ? <div>Loading...</div> :
+              <div>No Links are saved so far...</div>
           }
         </tbody>
       </table>

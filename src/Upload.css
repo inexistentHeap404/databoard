@@ -21,6 +21,11 @@
     justify-content: center;
 }
 
+.uploadformHeader{
+    font-size: x-large;
+    font-weight: bolder;
+}
+
 .radioGroup{
     display: flex;
     gap: 10px;
@@ -54,4 +59,42 @@
 .closeButton:hover{
     background-color: red;
     color: white;
+}
+
+
+.dropdownContainer{
+    position: relative;
+    display: inline-block;
+}
+.dropdown{
+    padding: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+    position: absolute;
+    background-color: white;
+    left: 0;
+    top: calc(100% + 10px);
+}
+
+.dropdownItems{
+    background-color: white;
+    padding: 10px;
+}
+
+.dropdownItems:hover{
+    background-color: #eee;
+}
+
+.dropdownSelected{
+    font-weight: bolder;
+    color: #000000;
+}
+
+.dropdownLabel{
+    padding: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+    position: relative;
+    background-color: white;
+    font-weight: bolder;
 }
